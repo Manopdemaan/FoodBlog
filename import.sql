@@ -4,10 +4,14 @@ CREATE DATABASE foodblog;
 
 USE foodblog;
 
-# Maak hier je posts tabel aan
-#
-#
-
+CREATE TABLE posts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titel VARCHAR(255),
+    datum DATETIME DEFAULT CURRENT_TIMESTAMP,
+    img_url VARCHAR(255),
+    inhoud TEXT,
+    auteur VARCHAR(255)  
+);
 INSERT INTO posts (titel, datum, img_url, inhoud)
 VALUES
     ('Pindakaas', '2020:06:18 13:25:00', 'https://i.ibb.co/C0Lb7R1/pindakaas.jpg','Verwarm de oven voor op 180 °C. Verdeel de pinda’s over een met bakpapier beklede bakplaat en rooster in ca. 8 min. lichtbruin. Schep regelmatig om. Maal de warme pinda’s in de keukenmachine in 4 min. tot een grove, dikke pindakaas. Schep de rand van de kom regelmatig schoon met een spatel. Voeg het zout, de olie en honing toe en maal nog 1 min. tot een gladde pindakaas. Schep in een pot en sluit af.
