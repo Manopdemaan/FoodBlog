@@ -13,7 +13,6 @@
             </div>
             <?php
                require_once 'connection.php';
-
             try {
 
                 $query = "SELECT * FROM posts";
@@ -30,9 +29,9 @@
                     echo "</div>";
                 }
            } catch (PDOException $e) {
-                echo "Error: " . $e->getMessage();
-            }
+                 echo "Error: " . $e->getMessage();
+            };
           ?>
-        </div>
+          </div>
     </body>
 </html>
