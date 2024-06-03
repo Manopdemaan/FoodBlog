@@ -13,7 +13,11 @@
         <?php
         require_once 'connection.php';
         try {
-            $query = "SELECT * FROM posts";
+            $query = "
+                SELECT posts.*, auteurs.naam AS auteur 
+                FROM posts 
+                JOIN auteurs ON posts.auteur_id = auteurs.id
+            ";
             $stmt = $conn->query($query);
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
