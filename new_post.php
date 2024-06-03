@@ -5,7 +5,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] === "Publiceer") {
     $titel = $_POST['titel'];
     $img_url = $_POST['img_url'];
     $inhoud = $_POST['inhoud'];
-    $auteur = "Anonieme auteur"; // Auteursnaam hardcoderen of uitbreiden met een input veld
+    $auteur = "Anonieme auteur"; 
 
     try {
         $sql = "INSERT INTO posts (titel, img_url, inhoud, auteur) VALUES (:titel, :img_url, :inhoud, :auteur)";
@@ -18,7 +18,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] === "Publiceer") {
         
         $stmt->execute();
 
-        // Redirect to index.php to follow the PRG pattern
+        
         header("Location: index.php");
         exit;
     } catch (PDOException $e) {
