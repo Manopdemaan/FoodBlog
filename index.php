@@ -13,7 +13,7 @@
         <?php
         require_once 'connection.php';
         try {
-            if(isset($_POST['like'])) {
+            if (isset($_POST['like'])) {
                 $postId = $_POST['like'];
                 $updateQuery = "UPDATE posts SET likes = likes + 1 WHERE id = :postId";
                 $stmt = $conn->prepare($updateQuery);
