@@ -1,13 +1,15 @@
-DROP DATABASE IF EXISTS foodblog;
-CREATE DATABASE foodblog;
+
+CREATE DATABASE IF NOT EXISTS foodblog;
+
 USE foodblog;
 
-CREATE TABLE authors (
+
+CREATE TABLE IF NOT EXISTS authors (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255)
 );
 
-CREATE TABLE posts (
+CREATE TABLE IF NOT EXISTS posts (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titel VARCHAR(255),
     datum DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -18,7 +20,24 @@ CREATE TABLE posts (
     FOREIGN KEY (auteur_id) REFERENCES authors(id)
 );
 
-INSERT INTO authors (name) VALUES ('Mounir Toub'), ('Miljuschka'), ('Wim Ballieu');
+CREATE TABLE IF NOT EXISTS tags (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titel VARCHAR(191) UNIQUE
+);
+
+
+CREATE TABLE IF NOT EXISTS posts_tags (
+    post_id INT,
+    tag_id INT,
+    FOREIGN KEY (post_id) REFERENCES posts(id),
+    FOREIGN KEY (tag_id) REFERENCES tags(id),
+    PRIMARY KEY (post_id, tag_id)
+);
+
+INSERT INTO authors (name) VALUES 
+('Mounir Toub'),
+('Miljuschka'),
+('Wim Ballieu');
 
 INSERT INTO posts (titel, datum, img_url, inhoud, auteur_id, likes)
 VALUES

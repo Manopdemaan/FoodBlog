@@ -9,6 +9,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] === "Publiceer") {
     $auteur_id = $_POST['auteur_id'];
 
     try {
+
         $sql = "INSERT INTO posts (titel, img_url, inhoud, auteur_id) VALUES (:titel, :img_url, :inhoud, :auteur_id)";
         $stmt = $conn->prepare($sql);
         
@@ -18,6 +19,26 @@ if (isset($_POST["submit"]) && $_POST["submit"] === "Publiceer") {
         $stmt->bindParam(':auteur_id', $auteur_id);
         
         $stmt->execute();
+
+
+        $post_id = $conn->lastInsertId();
+
+        $tags = array_map('trim', explode(',', $_POST["tags"]));
+        foreach ($tags as $tag) {
+
+            $sql = 'INSERT INTO tags (titel) VALUES (:titel) ON DUPLICATE KEY UPDATE titel = titel';
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':titel', $tag);
+            $stmt->execute();
+
+            $tag_id = $conn->lastInsertId();
+
+            $sql = 'INSERT INTO posts_tags (post_id, tag_id) VALUES (:post_id, :tag_id)';
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':post_id', $post_id);
+            $stmt->bindParam(':tag_id', $tag_id);
+            $stmt->execute();
+        }
 
         header("Location: index.php");
         exit;
@@ -49,7 +70,10 @@ if (isset($_POST["submit"]) && $_POST["submit"] === "Publiceer") {
 
             <label for="inhoud">Inhoud:</label>
             <textarea name="inhoud" id="inhoud" rows="10" cols="100" required></textarea>
-            
+
+            <label for="tags">Tags (door komma gescheiden):</label>
+            <input type="text" name="tags" id="tags" required>
+
             <label for="auteur_id">Auteur:</label>
             <select name="auteur_id" id="auteur_id" required>
                 <option value="1">Mounir Toub</option>

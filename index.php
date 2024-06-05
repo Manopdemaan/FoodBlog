@@ -51,6 +51,19 @@
                 echo "<img src='" . htmlspecialchars($row['img_url']) . "' alt='" . htmlspecialchars($row['titel']) . "'>";
                 echo "</div>";
                 echo "<span class='details'>Geschreven op: " . htmlspecialchars($row['datum']) . " door " . htmlspecialchars($row['author_name']) . "</span>";
+                echo "<span class='details'>Tags: ";
+                
+                $tagsQuery = "SELECT t.titel FROM tags t INNER JOIN posts_tags pt ON t.id = pt.tag_id WHERE pt.post_id = :post_id";
+                $tagsStmt = $conn->prepare($tagsQuery);
+                $tagsStmt->bindParam(':post_id', $row['id']);
+                $tagsStmt->execute();
+                $tags = $tagsStmt->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach ($tags as $tag) {
+                    echo "<a href='lookup.php?tag=" . urlencode($tag['titel']) . "'>" . htmlspecialchars($tag['titel']) . "</a> ";
+                }
+                echo "</span>";
+                
                 echo "<p>" . nl2br(htmlspecialchars($row['inhoud'])) . "</p>";
                 echo "<form action='index.php' method='post'>";
                 echo "<button type='submit' name='like' value='" . $row['id'] . "'>" . $row['likes'] . " likes</button>";
