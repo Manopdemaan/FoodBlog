@@ -9,7 +9,6 @@ if (isset($_POST["submit"]) && $_POST["submit"] === "Publiceer") {
     $auteur_id = $_POST['auteur_id'];
 
     try {
-
         $sql = "INSERT INTO posts (titel, img_url, inhoud, auteur_id) VALUES (:titel, :img_url, :inhoud, :auteur_id)";
         $stmt = $conn->prepare($sql);
         
@@ -25,7 +24,6 @@ if (isset($_POST["submit"]) && $_POST["submit"] === "Publiceer") {
 
         $tags = array_map('trim', explode(',', $_POST["tags"]));
         foreach ($tags as $tag) {
-
             $sql = 'INSERT INTO tags (titel) VALUES (:titel) ON DUPLICATE KEY UPDATE titel = titel';
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':titel', $tag);
