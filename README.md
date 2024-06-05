@@ -1,4 +1,4 @@
-# De beste schrijver
+# Let's Play Tag! 
 
 Database MOET foodblog heten.
 # Bewerk het bestand connection.php en vul de juiste databasegegevens in:
