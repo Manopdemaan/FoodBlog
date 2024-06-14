@@ -1,4 +1,3 @@
-
 <?php
 require_once 'connection.php';
 
@@ -19,12 +18,11 @@ if (isset($_POST["submit"]) && $_POST["submit"] === "Publiceer") {
         
         $stmt->execute();
 
-
         $post_id = $conn->lastInsertId();
 
         $tags = array_map('trim', explode(',', $_POST["tags"]));
         foreach ($tags as $tag) {
-            $sql = 'INSERT INTO tags (titel) VALUES (:titel) ON DUPLICATE KEY UPDATE titel = titel';
+            $sql = 'INSERT INTO tags (titel) VALUES (:titel) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)';
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':titel', $tag);
             $stmt->execute();
