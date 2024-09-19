@@ -11,3 +11,5 @@ $dsn = 'mysql:host=' . $host . ';dbname=' . $dbname;
 
 # Importeren Database:
 import.sql.
+
+![afbeelding](https://github.com/user-attachments/assets/ed60dd39-10bb-47b9-8671-6650bf380e38)
