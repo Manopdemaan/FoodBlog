@@ -53,18 +53,11 @@ Het "Let's Play Tag!" project is een foodblog waar gebruikers posts kunnen bekij
 ## Bestanden
 
 - `index.php`: De hoofdpagina waar berichten worden weergegeven en geliket kunnen worden.
-![Alt text](![afbeelding](https://github.com/user-attachments/assets/dd684e3b-39f3-44a5-a5be-f3df2ff6eca1)
-)
-
 
 - `new_post.php`: Een formulier voor het toevoegen van nieuwe berichten.
-- ![afbeelding](![afbeelding](https://github.com/user-attachments/assets/41f049b4-768b-4166-bae5-21cb0b5437cb)
-)
 
 - `lookup.php`: Een pagina voor het zoeken naar berichten op basis van tags.
-- ![afbeelding](![![afbeelding](https://github.com/user-attachments/assets/62481aa9-62b1-4b54-b1a1-e18c120edc47)
-)
-)
+
 - `connection.php`: Bevat de databaseverbindinginstellingen.
 - 
 - `style.css`: De CSS-stijlen voor het project.
