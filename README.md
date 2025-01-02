@@ -19,8 +19,8 @@ Het "Let's Play Tag!" project is een foodblog waar gebruikers posts kunnen bekij
 1. **Download het project**:
    - Clone het project naar je lokale machine met behulp van de volgende Git-commando:
      ```bash
-    git@github.com:Manopdemaan/FoodBlog.git
-     ```
+
+     ```    git@github.com:Manopdemaan/FoodBlog.git
 
 2. **Configureer de database**:
    - Zorg ervoor dat je een MySQL-database hebt met de naam `foodblog`.
